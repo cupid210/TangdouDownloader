@@ -3,7 +3,18 @@
 一次粘贴多个包含 `vid` 的分享链接，自动下载每个视频的最高可用画质，直接保存 MP4。
 不再询问清晰度、剪辑或音频转换。
 
-## Windows 直接使用
+## Windows EXE 直接使用
+
+如果拿到的是打包好的 `TangdouDownloader.exe`，无需安装 Python，直接双击运行。
+在打开的命令窗口里粘贴多个链接，每行一个，最后再按一次回车开始下载。
+视频保存到 EXE 旁边的 `Download` 文件夹，请先把 EXE 放在有写入权限的普通文件夹中。
+
+GitHub 的 Code → Download ZIP 下载的是源码，不会包含本地生成的 EXE。
+源码使用方法见下方；开发者也可以安装 Python 后双击 `build_exe.bat`，
+它会创建独立的构建环境并生成 `dist/TangdouDownloader.exe`。
+旧的 `compile.bat` 也会调用同一个打包脚本。该 EXE 为 Windows 64 位控制台程序。
+
+## 使用 Python 运行源码
 
 安装 Python 3.8 或更新版本，在项目目录安装依赖：
 

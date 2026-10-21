@@ -198,6 +198,11 @@ def main(argv=None):
 
 
 if __name__ == "__main__":
+    # Frozen applications do not honor PYTHONIOENCODING; keep Chinese console
+    # text and redirected output consistent with the Windows launcher.
+    for stream in (sys.stdin, sys.stdout, sys.stderr):
+        if hasattr(stream, "reconfigure"):
+            stream.reconfigure(encoding="utf-8")
     try:
         sys.exit(main())
     except (KeyboardInterrupt, EOFError):
