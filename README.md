@@ -3,59 +3,9 @@
 一次粘贴多个包含 `vid` 的分享链接，自动下载每个视频的最高可用画质，直接保存 MP4。
 不再询问清晰度、剪辑或音频转换。
 
-## Windows EXE 直接使用
-
-在 GitHub 点击 **Code → Download ZIP**，下载后先解压，然后双击文件夹根目录中的
-**`TangdouDownloader.exe`** 即可运行，无需安装 Python，也无需执行打包脚本。
+双击文件夹根目录中的**`TangdouDownloader.exe`** 即可运行，无需安装 Python，也无需执行打包脚本。
 在打开的命令窗口里粘贴多个链接，每行一个，最后再按一次回车开始下载。
-视频保存到 EXE 旁边的 `Download` 文件夹，请先把 EXE 放在有写入权限的普通文件夹中。
-
-仓库根目录已包含预先打包好的 EXE，因此 GitHub 的 ZIP 同样包含该程序。
-源码使用方法见下方；需要重新构建的开发者可以安装 Python 后双击 `build_exe.bat`，
-它会创建独立的构建环境，生成 `dist/TangdouDownloader.exe` 并复制到仓库根目录。
-旧的 `compile.bat` 也会调用同一个打包脚本。该 EXE 为 Windows 64 位控制台程序。
-
-## 使用 Python 运行源码
-
-安装 Python 3.8 或更新版本，在项目目录安装依赖：
-
-```powershell
-python -m pip install -r requirements.txt
-```
-
-双击 `start.bat`，粘贴多个链接，每行一个；全部粘贴完后，再按一次回车开始下载。
-也支持用空格、中文或英文逗号分隔，支持直接输入 vid 编号；同一批中的重复 vid 会自动去重。
-
-```text
-请粘贴多个含 vid 的链接或 vid 编号（每行一个，也可用空格分隔）。
-粘贴完再按一次回车开始下载；直接回车退出。
-https://www.tangdouddn.com/h5/play?vid=20000014177453&utm_campaign=client_share&utm_source=tangdou_android
-https://www.tangdoucdn.com/h5/play?vid=另一个数字编号
-20000014177453
-
-```
-
-上面最后的空行代表开始下载。默认保存到程序目录的 `Download` 文件夹，
-文件名包含标题、vid 和清晰度，避免同名视频相互覆盖。
-完成一批后可以继续粘贴下一批；直接输入空行或按 Ctrl+C 退出。
-失败的视频会单独列出 vid，不影响其他任务。
-
-`start.bat` 优先使用项目的 `.venv`，其次使用旧版嵌入式 Python，最后使用系统 Python；
-如果项目内存在 `.deps`，启动器会一并加载其中已安装的依赖。
-
-## 命令行和文本文件
-
-```powershell
-python main.py "https://www.tangdouddn.com/h5/play?vid=20000014177453" "另一个含vid的链接"
-python main.py --file links.txt
-python main.py --file links.txt --output "D:\Videos" --workers 5
-```
-
-- `links.txt` 使用 UTF-8 编码，建议每行一个链接。
-- `--output` 指定最终保存目录，不会再额外追加 Download。
-- `--workers` 控制同时处理的视频数量，默认 5，可设为 1–16；通常默认值即可。
-- 命令行模式下载完后退出；全部成功或已存在返回 0，有失败返回 1。
-- 仍可通过 `python main.py --json-dir DownloadList` 读取旧版 JSON 下载列表，无需抓包也能直接粘贴链接。
+视频保存到 `Download` 文件夹。
 
 ## 自动画质与下载加速
 
